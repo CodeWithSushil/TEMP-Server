@@ -1,0 +1,155 @@
+![TEMP Server](./temp.png)
+
+### What is TEMP Server:-
+* This TEMP Server only for Android users or Termux users.
+* If you didn't know what is termux than you read [here](https://en.m.wikipedia.org/wiki/Termux).
+* T for [Termux](https://termux.dev) App.
+* E for [Nginx](https://www.nginx.com) Web Server.
+* M for [MariaDB](https://mariadb.com) Database Server.
+* P for [PHP](https://www.php.net) Language.
+
+### Termux Installation 
+* If you install Termux app from Google [Play Store](https://play.google.com/store/apps/details?id=com.termux) maybe faced many problem in installation time.
+* So you go to download termux App from [F-Droid](https://f-droid.org/repo/com.termux_118.apk) or [Github](https://github.com/termux/termux-app/releases/download/v0.118.0/termux-app_v0.118.0+github-debug_universal.apk).
+* After install termux app than you follow this commands.
+
+### TEMP Server Installation Commands:-
+1. Update your Termux Repositorie.
+
+```bash
+ pkg update
+     or
+ apt update
+```
+2. Update your Termux Packages.
+
+```bash
+pkg upgrade -y 
+     or
+apt upgrade -y
+```
+3. Install PHP Language and PHP-FPM (FastCGI Process Manager) for PHP.
+
+```bash
+pkg install php php-fpm -y
+            or
+apt install php php-fpm -y
+```
+
+4. Install MariaDB Database Server.
+
+```bash
+pkg install mariadb -y
+         or
+apt install mariadb -y
+```
+
+5. Install Nginx Web Server.
+
+```bash
+pkg install nginx -y
+        or
+apt install nginx -y
+```
+
+6. Install [PhpMyAdmin](https://www.phpmyadmin.net) for Mariadb/MySQL Client.
+
+```bash
+pkg install phpmyadmin -y
+          or
+apt install phpmyadmin -y
+```
+7. [Composer](https://getcomposer.org) is a [Dependency Manager](https://packagist.org) for PHP programming language so if you need composer than go to this command.
+
+```bash
+pkg install composer -y
+         or
+apt install composer -y # (Optional)
+
+```
+8. Install msmtp a lightweight SMTP (Simple Mail Transfer Protocol) client.
+
+```bash
+pkg install msmtp -y
+       or 
+apt install msmtp -y
+```
+
+### PHP and Nginx Configuration
+* Set your project path
+* `cd $PREFIX/etc/nginx` edit nginx.conf file `nano nginx.conf`.
+```bash
+root /data/data/com.termux/files/usr/share/nginx/html;  #Default Set
+# root /sdcard/your_project_path
+index index.php index.html index.htm; # Set index
+```
+* Configuration PHP Script and PHP-FPM.
+
+```bash
+location ~ \.php$ {
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    fastcgi_pass unix:/data/data/com.termux/files/usr/var/run/php-fpm.sock;  # Set PHP-FPM for php script
+    fastcgi_index index.php;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+}
+```
+* Save nginx.conf file
+
+### PHP-FPM Configuration
+* Open php-fpm.d folder and edit www.conf file.
+* `cd $PREFIX/etc/php-fpm.d` and open www.conf file on nano text editor `nano www.conf`.
+* Set your user name if you didn't know than run this command `whoami` and copy your termux user name.
+```bash
+28 user = www-data   # Set your termux user name
+29 group = www-data   # Set your termux user name
+41 listen = /data/data/com.termux/files/usr/var/run/php-fpm.sock
+53 listen.owner = www-data   # Set your termux user name
+54 listen.owner = www-data   # Set your termux user name
+116 pm = dynamic
+```
+* Save www.conf file.
+
+### PHP.ini Configuration
+* Go to lib directory `cd $PREFIX/lib`.
+* Create a php.ini file run this command `touch php.ini`.
+* Open php.ini file on your vim Editor or Nano Editor.
+* `nano php.ini`.
+```bash
+sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -C /data/data/com.termux/files/usr/etc/msmtprc -t"
+```
+* Save your php.ini file.
+
+### MSMTP Configuration
+* First Create a .msmtprc file.
+* `touch .msmtprc`
+* Open .msmtprc file on your Nano Editor.
+* `nano .msmtprc`
+
+```bash
+account default
+host smtp.mail.com
+port 587
+from      # Your Email id
+auth on
+user      # Your Email id
+password  # Your Email Password
+tls on
+tls_starttls on
+tls_trust_file /data/data/com.termux/files/usr/etc/tls/cert.pem
+```
+* Save your .msmtprc file.
+
+### Check Configuration Status
+* Create a index.php file.
+* `nano index.php`
+```php
+<?php
+phpinfo();
+?>
+```
+* Run this command `nginx` and `php-fpm`.
+* Open This URL  “[http://localhost:8080](http://localhost:8080)” on your Mobile [Chrome](https://play.google.com/store/apps/details?id=com.android.chrome) Browser.
+
+![TEMP Result](./temp.jpg)
