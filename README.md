@@ -150,6 +150,13 @@ phpinfo();
 ?>
 ```
 * Run this command `nginx` and `php-fpm`.
+
+OR 
+
+```bash
+nginx && php-fpm
+```
+
 * Open This URL  “[http://localhost:8080](http://localhost:8080)” on your Mobile [Chrome](https://play.google.com/store/apps/details?id=com.android.chrome) Browser.
 
 ![TEMP Result](./temp.jpg)
