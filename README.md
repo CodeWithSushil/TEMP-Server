@@ -149,9 +149,7 @@ tls_trust_file /data/data/com.termux/files/usr/etc/tls/cert.pem
 phpinfo();
 ?>
 ```
-* Run this command `nginx` and `php-fpm`.
-
-OR 
+* Run this command `nginx` and `php-fpm`. 
 
 ```bash
 nginx && php-fpm
