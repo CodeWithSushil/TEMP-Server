@@ -85,7 +85,7 @@ index index.php index.html index.htm; # Set index
 ```
 * Configuration PHP Script and PHP-FPM.
 
-```bash
+```conf
 location ~ \.php$ {
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
     fastcgi_pass unix:/data/data/com.termux/files/usr/var/run/php-fpm.sock;  # Set PHP-FPM for php script
@@ -101,7 +101,7 @@ location ~ \.php$ {
 * Open php-fpm.d folder and edit www.conf file.
 * `cd $PREFIX/etc/php-fpm.d` and open www.conf file on nano text editor `nano www.conf`.
 * Set your user name if you didn't know than run this command `whoami` and copy your termux user name.
-```bash
+```bashrc
 28 user = www-data   # Set your termux user name
 29 group = www-data   # Set your termux user name
 41 listen = /data/data/com.termux/files/usr/var/run/php-fpm.sock
@@ -128,7 +128,7 @@ sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -t"
 * Go to conf.d directory `cd conf.d`
 * Create my.ini file for MySQL or Mariadb configuration.
 * Run this command `touch my.ini && vi my.ini`
-```bash
+```ini
 error_reporting = E_ALL
 display_errors = on
 date.timezone = "Asia/Kolkata"  # Replace with your timezone
@@ -139,7 +139,7 @@ post_max_size = 20M
 
 ### MySQL's my.cnf file
 
-```bash
+```cnf
 # my.cnf
 [mysqld]
 port=3306
@@ -169,7 +169,7 @@ max_connections=200
 * Open .msmtprc file on your Nano Editor.
 * `nano .msmtprc`
 
-```bash
+```bashrc
 account default
 host smtp.mail.com
 port 587
