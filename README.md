@@ -112,14 +112,56 @@ location ~ \.php$ {
 * Save www.conf file.
 
 ### PHP.ini Configuration
-* Go to lib directory `cd $PREFIX/lib`.
+* Go to etc directory `cd $PREFIX/etc/php`.
 * Create a php.ini file run this command `touch php.ini`.
 * Open php.ini file on your vim Editor or Nano Editor.
 * `nano php.ini`.
 ```bash
-sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -C /data/data/com.termux/files/usr/etc/msmtprc -t"
+sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -t"
 ```
 * Save your php.ini file.
+
+### My.ini
+* Go to etc directory `cd $PREFIX/etc/php`.
+* Create `conf.d` directory inside of php directory.
+* Run this command `mkdir conf.d`
+* Go to conf.d directory `cd conf.d`
+* Create my.ini file for MySQL or Mariadb configuration.
+* Run this command `touch my.ini && vi my.ini`
+```bash
+error_reporting = E_ALL
+display_errors = on
+date.timezone = "Asia/Kolkata"  # Replace with your timezone
+memory_limit = 128M
+upload_max_filesize = 10M
+post_max_size = 20M 
+```
+
+### MySQL's my.cnf file
+
+```bash
+# my.cnf
+[mysqld]
+port=3306
+socket=/data/data/com.termux/files/usr/tmp/mysql.sock
+datadir=/data/data/com.termux/files/usr/var/lib/mysql
+log-error=/data/data/com.termux/files/usr/var/log/mysql.err
+pid-file=/data/data/com.termux/files/usr/var/run/mysqld/mysqld.pid
+skip-external-locking
+
+[client]
+port=3306
+socket=/data/data/com.termux/files/usr/tmp/mysql.sock
+
+[mysqldump]
+quick
+quote-names
+max_allowed_packet=16M
+
+innodb_buffer_pool_size=256M
+key_buffer_size=64M
+max_connections=200
+```
 
 ### MSMTP Configuration
 * First Create a .msmtprc file.
