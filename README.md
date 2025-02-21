@@ -101,7 +101,7 @@ location ~ \.php$ {
 * Open php-fpm.d folder and edit www.conf file.
 * `cd $PREFIX/etc/php-fpm.d` and open www.conf file on nano text editor `nano www.conf`.
 * Set your user name if you didn't know than run this command `whoami` and copy your termux user name.
-```conf
+```cnf
 28 user = www-data   # Set your termux user name
 29 group = www-data   # Set your termux user name
 41 listen = /data/data/com.termux/files/usr/var/run/php-fpm.sock
@@ -116,7 +116,7 @@ location ~ \.php$ {
 * Create a php.ini file run this command `touch php.ini`.
 * Open php.ini file on your vim Editor or Nano Editor.
 * `nano php.ini`.
-```php
+```ini
 sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -t"
 ```
 * Save your php.ini file.
@@ -128,7 +128,7 @@ sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -t"
 * Go to conf.d directory `cd conf.d`
 * Create my.ini file for MySQL or Mariadb configuration.
 * Run this command `touch my.ini && vi my.ini`
-```php
+```ini
 error_reporting = E_ALL
 display_errors = on
 date.timezone = "Asia/Kolkata"  # Replace with your timezone
