@@ -78,14 +78,14 @@ apt install msmtp -y
 ### PHP and Nginx Configuration
 * Set your project path
 * `cd $PREFIX/etc/nginx` edit nginx.conf file `nano nginx.conf`.
-```bash
+```nginx
 root /data/data/com.termux/files/usr/share/nginx/html;  #Default Set
 # root /sdcard/your_project_path
 index index.php index.html index.htm; # Set index
 ```
 * Configuration PHP Script and PHP-FPM.
 
-```conf
+```nginx
 location ~ \.php$ {
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
     fastcgi_pass unix:/data/data/com.termux/files/usr/var/run/php-fpm.sock;  # Set PHP-FPM for php script
@@ -101,7 +101,7 @@ location ~ \.php$ {
 * Open php-fpm.d folder and edit www.conf file.
 * `cd $PREFIX/etc/php-fpm.d` and open www.conf file on nano text editor `nano www.conf`.
 * Set your user name if you didn't know than run this command `whoami` and copy your termux user name.
-```bashrc
+```conf
 28 user = www-data   # Set your termux user name
 29 group = www-data   # Set your termux user name
 41 listen = /data/data/com.termux/files/usr/var/run/php-fpm.sock
@@ -116,7 +116,7 @@ location ~ \.php$ {
 * Create a php.ini file run this command `touch php.ini`.
 * Open php.ini file on your vim Editor or Nano Editor.
 * `nano php.ini`.
-```bash
+```php
 sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -t"
 ```
 * Save your php.ini file.
@@ -128,7 +128,7 @@ sendmail_path = "/data/data/com.termux/files/usr/bin/msmtp -t"
 * Go to conf.d directory `cd conf.d`
 * Create my.ini file for MySQL or Mariadb configuration.
 * Run this command `touch my.ini && vi my.ini`
-```ini
+```php
 error_reporting = E_ALL
 display_errors = on
 date.timezone = "Asia/Kolkata"  # Replace with your timezone
