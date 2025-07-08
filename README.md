@@ -201,8 +201,16 @@ nginx && php-fpm
 
 ![TEMP Result](./temp.jpg)
 
+---
+
 ## MariaDB Config with PDO (socket)
-If you getting error when you try to a connection with mariadb database. So you try this socket connection with MariaDB because MariaDB provide us socket for better experience and fast and secure connection.
+If you getting error when you try to a connection with mariadb database. So you try this socket connection with MariaDB because MariaDB provide us socket for better experience and fast and secure connection. Before the established a connection with MariaDB, please config your `php.ini` file.
+
+```ini
+; php.ini
+mysqli.default_socket="/usr/var/run/mysqld.sock"
+pdo_mysql.default_socket="/usr/var/run/mysqld.sock"
+```
 
 ```php
 // MySQL way
@@ -222,3 +230,4 @@ if($pdo){
 }
 
 ```
+---
