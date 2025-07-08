@@ -202,8 +202,23 @@ nginx && php-fpm
 ![TEMP Result](./temp.jpg)
 
 ## MariaDB Config with PDO (socket)
-$mariadb = ini_get('mysqli.default_socket');
+If you getting error when you try to a connection with mariadb database. So you try this socket connection with MariaDB because MariaDB provide us socket for better experience and fast and secure connection.
+
+```php
+// MySQL way
+$pdo = new PDO("mysql:host=localhost;dbname=test;",'root','');
+
+if($pdo){
+    echo "Database connection success!";
+}
+
+// MariaDB's socket way
 $mariadb = ini_get('pdo_mysql.default_socket');
 
 $pdo = new PDO("mysql:unix_socket=$mariadb;dbname=test", 'root', '');
-echo "Database connection success!";
+
+if($pdo){
+    echo "Database connection success!";
+}
+
+```
