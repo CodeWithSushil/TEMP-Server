@@ -200,3 +200,10 @@ nginx && php-fpm
 * Open This URL  “[http://localhost:8080](http://localhost:8080)” on your Mobile [Chrome](https://play.google.com/store/apps/details?id=com.android.chrome) Browser.
 
 ![TEMP Result](./temp.jpg)
+
+## MariaDB Config with PDO (socket)
+$mariadb = ini_get('mysqli.default_socket');
+$mariadb = ini_get('pdo_mysql.default_socket');
+
+$pdo = new PDO("mysql:unix_socket=$mariadb;dbname=test", 'root', '');
+echo "Database connection success!";
