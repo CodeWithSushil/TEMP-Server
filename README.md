@@ -1,4 +1,4 @@
-![TEMP Server](./temp.png)
+![TEMP Server](./assets/temp.png)
 
 ### What is TEMP Server:-
 * This TEMP Server only for Android users or Termux users.
@@ -14,6 +14,11 @@
 * After install termux app than you follow this commands.
 
 ### TEMP Server Installation Commands:-
+if not working 
+```bash
+./install.sh
+```
+
 1. Update your Termux Repositorie.
 
 ```bash
